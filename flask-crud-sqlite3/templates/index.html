@@ -20,7 +20,7 @@
             <div class="col-md-4 offset-md-4 my-auto">
                 <div class="card">
                     <div class="card-header">
-                        <form action="">
+                        <form action="/create-task" method="POST">
                             <div class="form-group">
                                 <input type="text" name="content" placeholder="Task" class="form-control" autofocus>
                             </div>
@@ -30,7 +30,16 @@
                         </form>
                     </div>
                     <div class="card-body">
-    
+                        <ul class="list-group">
+                            {% for task in tasks %}
+                            <li class="list-group-item">
+                                <span class="{% if task.done %} done {% endif %}">{{task.content}}</span>
+                                <br>
+                                <a href="/done/{{task.id}}" class="btn btn-success btn-sm">DONE</a>
+                                <a href="/delete/{{task.id}}" class="btn btn-danger btn-sm">DELETE</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
                     </div>
                 </div>
             </div>
